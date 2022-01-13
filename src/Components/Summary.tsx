@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { inject, observer } from 'mobx-react';
 import CountryStore from '../Stores/CountryStore';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar, TablePagination, Box } from '@mui/material';
-import FlagCircleRoundedIcon from '@mui/icons-material/FlagCircleRounded';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar } from '@mui/material';
 
 interface ISummaryProps {
   countryStore?: CountryStore;
@@ -11,7 +10,6 @@ interface ISummaryProps {
 const Summary: FC<ISummaryProps> = inject('countryStore')(observer(({ countryStore }) => {
   const smallestCountry = countryStore?.findCountryWithSmallestArea();
   const biggestCountry = countryStore?.findCountryWithBiggestArea();
-
 
   return (
     <TableContainer component={Paper} sx={{ display: 'flex', justifyContent: 'center' }} >

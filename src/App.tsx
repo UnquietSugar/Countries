@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import DataTable from './Components/DataTable';
 import Loader from './Components/Loader';
 import Navbar from './Components/Navbar';
@@ -9,9 +9,8 @@ import { inject, observer } from 'mobx-react';
 import { Box } from '@mui/system';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-
 interface IAppProps {
-  countryStore?: CountryStore
+  countryStore?: CountryStore;
 }
 
 const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) => {
@@ -24,19 +23,18 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
             <DataTable />
             <Summary />
           </>
-          : <Loader />}
-      </Box>)
+          :
+          <Loader />}
+      </Box>);
   }
-
 
   const langTable = () => {
     return (
       <Box padding={10}>
         {countryStore?.countries.length > 0 ?
-          <>
-            <LangTable />
-          </>
-          : <Loader />}
+          <LangTable />
+          :
+          <Loader />}
       </Box>
     )
   }
@@ -55,7 +53,6 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
   );
 
 }));
-
 
 
 export default App;

@@ -1,10 +1,8 @@
 import React, { FC, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import CountryStore from '../Stores/CountryStore';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar, TablePagination, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar, TablePagination } from '@mui/material';
 import FlagCircleRoundedIcon from '@mui/icons-material/FlagCircleRounded';
-
-
 
 interface IDataTableProps {
   countryStore?: CountryStore;

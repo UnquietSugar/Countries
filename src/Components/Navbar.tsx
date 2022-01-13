@@ -6,11 +6,6 @@ import { makeStyles } from '@mui/styles';
 import filterOptions from '../Enums/filterEnum'
 import { Link } from 'react-router-dom';
 
-
-
-
-
-
 interface INavbarProps {
   countryStore?: CountryStore
 }

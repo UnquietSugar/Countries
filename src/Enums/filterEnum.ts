@@ -4,4 +4,5 @@ enum filterOptions {
   population,
   area
 }
-export default filterOptions
+
+export default filterOptions;
