@@ -49,9 +49,9 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
             </TableRow>
           ))}
           <TablePagination
-            sx={{ padding: 0 }}
-            component="span"
-            count={countryStore?.currentCountries.length}
+            sx={{ minWidth: 300 }}
+            component="div"
+            count={countryStore?.currentCountries.length || 0}
             page={page}
             onPageChange={handleChangePage}
             rowsPerPageOptions={[10, 25, 50, 100, 250]}

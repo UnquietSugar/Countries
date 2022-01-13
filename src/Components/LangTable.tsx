@@ -49,8 +49,8 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
             </TableRow>
           ))}
           <TablePagination
-            sx={{ padding: 0 }}
-            component="span"
+            sx={{ minWidth: 200 }}
+            component="div"
             count={countryStore?.langArray.length || 0}
             page={page}
             onPageChange={handleChangePage}
