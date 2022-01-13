@@ -12,7 +12,7 @@ const Summary: FC<ISummaryProps> = inject('countryStore')(observer(({ countrySto
   const biggestCountry = countryStore?.findCountryWithBiggestArea();
 
   return (
-    <TableContainer component={Paper} sx={{ display: 'flex', justifyContent: 'center', paddingBottom: 20 }} >
+    <TableContainer elevation={5} component={Paper} sx={{ display: 'flex', justifyContent: 'center', marginY: 5, paddingY: 10 }} >
       <Table sx={{ maxWidth: 700, minWidth: 400 }} aria-label="simple table">
         <TableHead >
           <TableRow color='secondary' >
