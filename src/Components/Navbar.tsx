@@ -3,7 +3,7 @@ import CountryStore from '../Stores/CountryStore';
 import { inject, observer } from 'mobx-react';
 import { AppBar, Toolbar, Typography, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Box, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import filterOptions from '../Enums/filterEnum'
+import sortOptions from '../Enums/sortEnum'
 import { Link } from 'react-router-dom';
 
 interface INavbarProps {
@@ -12,15 +12,15 @@ interface INavbarProps {
 
 const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore }) => {
   const classes = useStyles();
-  const [filter, setFilter] = useState<string>('');
+  const [sortBy, setsortBy] = useState<string>('');
 
   const handleChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
-    setFilter(value as string);
-    if (Number(value) === filterOptions.unsorted) countryStore?.assignOriginalCountriesArray();
-    if (Number(value) === filterOptions.name) countryStore?.sortByName();
-    if (Number(value) === filterOptions.population) countryStore?.sortByPopulation();
-    if (Number(value) === filterOptions.area) countryStore?.sortByArea();
+    setsortBy(value as string);
+    if (Number(value) === sortOptions.unsorted) countryStore?.assignOriginalCountriesArray();
+    if (Number(value) === sortOptions.name) countryStore?.sortByName();
+    if (Number(value) === sortOptions.population) countryStore?.sortByPopulation();
+    if (Number(value) === sortOptions.area) countryStore?.sortByArea();
   };
   return (
     <AppBar position="static" className={classes.navBar}>
@@ -32,18 +32,18 @@ const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore
         <Link to='/lang-table' style={linkStyle} ><Button sx={{ color: 'white' }} aria-selected={true}>Languages Table</Button></Link>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth variant='filled' sx={{ bgcolor: 'white' }}>
-            <InputLabel id="demo-simple-select-label">Filter by...</InputLabel>
+            <InputLabel id="demo-simple-select-label">Sort by...</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={filter}
-              label="Filter"
+              value={sortBy}
+              label="Sort"
               onChange={handleChange}
             >
-              <MenuItem value={filterOptions.unsorted}>Unsorted</MenuItem>
-              <MenuItem value={filterOptions.name}>Name</MenuItem>
-              <MenuItem value={filterOptions.population}>Population</MenuItem>
-              <MenuItem value={filterOptions.area}>Area</MenuItem>
+              <MenuItem value={sortOptions.unsorted}>Unsorted</MenuItem>
+              <MenuItem value={sortOptions.name}>Name</MenuItem>
+              <MenuItem value={sortOptions.population}>Population</MenuItem>
+              <MenuItem value={sortOptions.area}>Area</MenuItem>
             </Select>
           </FormControl>
         </Box>
