@@ -1,4 +1,4 @@
-export default class CountryService {
+export class CountryService {
 
   private path: string = 'https://restcountries.com/v3.1/';
 

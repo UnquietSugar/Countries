@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { inject, observer } from 'mobx-react';
-import CountryStore from '../Stores/CountryStore';
+import { CountryStore } from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar } from '@mui/material';
 
 interface ISummaryProps {

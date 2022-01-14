@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'mobx-react';
-import CountryStore from './Stores/CountryStore';
-import CountryService from './Services/CountryService'
+import { CountryStore } from './Stores/CountryStore';
+import { CountryService } from './Services/CountryService'
 
 const countryServce = new CountryService();
 const countryStore = new CountryStore(countryServce);

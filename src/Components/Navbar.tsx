@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import CountryStore from '../Stores/CountryStore';
+import { CountryStore } from '../Stores/CountryStore';
 import { inject, observer } from 'mobx-react';
 import { AppBar, Toolbar, Typography, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Box, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
