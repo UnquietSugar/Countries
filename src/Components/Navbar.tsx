@@ -8,9 +8,10 @@ import { Link } from 'react-router-dom';
 
 interface INavbarProps {
   countryStore?: CountryStore
+  sortIsDisabled: boolean;
 }
 
-const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore }) => {
+const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore, sortIsDisabled }) => {
   const classes = useStyles();
   const [sortBy, setsortBy] = useState<string>('');
 
@@ -31,7 +32,7 @@ const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore
         <Link to='/' style={linkStyle} ><Button sx={{ color: 'white' }} aria-selected={true}>Countries Table</Button></Link>
         <Link to='/lang-table' style={linkStyle} ><Button sx={{ color: 'white' }} aria-selected={true}>Languages Table</Button></Link>
         <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth variant='filled' sx={{ bgcolor: 'white' }}>
+          <FormControl fullWidth variant='filled' sx={{ bgcolor: 'white' }} disabled={sortIsDisabled}>
             <InputLabel id="demo-simple-select-label">Sort by...</InputLabel>
             <Select
               labelId="demo-simple-select-label"
