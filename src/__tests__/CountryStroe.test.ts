@@ -3,19 +3,17 @@ import { CountryService } from '../Services/CountryService';
 import { CountryStore } from '../Stores/CountryStore';
 
 const mockCountriesArr = [
-  { name: { common: 'c' }, population: 302, area: 7 },
-  { name: { common: 'a' }, population: 121, area: 5 },
-  { name: { common: 'b' }, population: 212, area: 6 },
+  { name: { common: 'c' }, population: 302, area: 7, languages: { a: 'a' } },
+  { name: { common: 'a' }, population: 121, area: 5, languages: { b: 'b', a: 'a' } },
+  { name: { common: 'b' }, population: 212, area: 6, languages: { b: 'b', c: 'c' } },
 ];
-
-
 
 jest.mock('../Services/CountryService', () => {
   return {
     CountryService: jest.fn().mockImplementation(() => {
       return {
         getAllCountries: () => mockCountriesArr,
-        getByLanguage: () => [1],
+        getByLanguage: (lang: string) => { return { lang: lang, data: mockCountriesArr }; },
       }
     })
   }
@@ -76,5 +74,17 @@ describe('CountryStore tests', () => {
     const res = countryStore.findCountryWithBiggestArea();
 
     expect(res).toEqual(mockCountriesArr[0]);
+  });
+
+  it('countryStore.langArray should be arr of unique strings', () => {
+    countryStore.extractLanguageKeysToArray();
+
+    expect(countryStore.langArray).toEqual(['a', 'b', 'c'])
+  });
+
+  it('should return array of countries', async () => {
+    await countryStore.getCountriesByLanguage(0, 1);
+
+    expect(countryStore.currentCountriesByLang).toEqual([{ lang: mockCountriesArr[0].languages.a, data: mockCountriesArr }])
   });
 })
