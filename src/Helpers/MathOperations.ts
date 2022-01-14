@@ -18,7 +18,7 @@ export default class MathOperations {
     let num = 0;
     arr.forEach((country) => num += country.population);
 
-    return num / arr.length;
+    return `${(num / arr.length).toFixed(1)} ppl`;
   }
 
   public countLanguagepopulation(arr: any[]) {
