@@ -45,7 +45,7 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
               <TableRow key={country.name + i}  >
                 <TableCell component="th" scope="row">{country.name.common}</TableCell>
                 <TableCell align="right">{country.region}</TableCell>
-                <TableCell align="right">{countryStore.toSqMiles(country.area)}</TableCell>
+                <TableCell align="right">{countryStore.toSqMiles(country.area)}mi&#178;</TableCell>
                 <TableCell align="right">{countryStore.toMillionsOrThousands(country.population)}</TableCell>
                 <TableCell align="right" ><Avatar alt={country.name.official} src={country.flags.png} /></TableCell>
               </TableRow>

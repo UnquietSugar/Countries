@@ -11,7 +11,7 @@ export default class MathOperations {
   }
 
   public toSqMiles(num: number) {
-    return `${(num * 0.386102).toFixed().toString().replace('-', '')} mi^2`;
+    return `${(num * 0.386102).toFixed().toString().replace('-', '')}`;
   }
 
   public countAveragePopulation(arr: any[]) {
