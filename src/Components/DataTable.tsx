@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar, TablePagination } from '@mui/material';
@@ -7,9 +7,10 @@ import styles from '../styles/styles';
 
 interface IDataTableProps {
   countryStore?: CountryStore;
+  setSortIsDisabled: (arg: boolean) => void;
 }
 
-const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countryStore }) => {
+const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countryStore, setSortIsDisabled }) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(25);
 
@@ -26,6 +27,8 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  useEffect(() => setSortIsDisabled(false));
 
   return (
     <>

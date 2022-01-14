@@ -7,9 +7,10 @@ import styles from '../styles/styles';
 
 interface ILangTableProps {
   countryStore?: CountryStore;
+  setSortIsDisabled: (arg: boolean) => void;
 }
 
-const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countryStore }) => {
+const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countryStore, setSortIsDisabled }) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage] = useState<number>(10);
 
@@ -23,8 +24,9 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
   useEffect(() => {
     countryStore?.extractLanguageKeysToArray();
     countryStore?.getCountriesByLanguage(page, rowsPerPage);
-  }, [page, rowsPerPage])
+  }, [page, rowsPerPage, countryStore])
 
+  useEffect(() => setSortIsDisabled(true));
 
 
 

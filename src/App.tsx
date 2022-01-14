@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import DataTable from './Components/DataTable';
 import Loader from './Components/Loader';
 import Navbar from './Components/Navbar';
@@ -14,13 +14,14 @@ interface IAppProps {
 }
 
 const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) => {
+  const [sortIsDisabled, setSortIsDisabled] = useState<boolean>(false);
 
   const countTable = () => {
     return (
       <Box padding={10}>
         {countryStore?.countries.length > 0 ?
           <>
-            <DataTable />
+            <DataTable setSortIsDisabled={setSortIsDisabled} />
             <Summary />
           </>
           :
@@ -32,7 +33,7 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
     return (
       <Box padding={10}>
         {countryStore?.countries.length > 0 ?
-          <LangTable />
+          <LangTable setSortIsDisabled={setSortIsDisabled} />
           :
           <Loader />}
       </Box>
@@ -43,7 +44,7 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
   return (
 
     <Router>
-      <Navbar />
+      <Navbar sortIsDisabled={sortIsDisabled} />
       <Routes>
         <Route path="/" element={countTable()} />
         <Route path="/lang-table" element={langTable()} />
