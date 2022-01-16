@@ -4,6 +4,7 @@ import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar, TablePagination } from '@mui/material';
 import FlagCircleRoundedIcon from '@mui/icons-material/FlagCircleRounded';
 import styles from '../styles/styles';
+import { toMillionsOrThousands, toSqMiles } from '../Helpers/mathOperations';
 
 interface IDataTableProps {
   countryStore?: CountryStore;
@@ -12,7 +13,7 @@ interface IDataTableProps {
 
 const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countryStore, setSortIsDisabled }) => {
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(25);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -24,11 +25,13 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(Number(event.target.value));
     setPage(0);
   };
 
   useEffect(() => setSortIsDisabled(false));
+
+  console.log(countryStore?.countries);
 
   return (
     <>
@@ -45,11 +48,11 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
           </TableHead>
           <TableBody>
             {countryStore?.currentCountries.slice(page * rowsPerPage, (page * rowsPerPage + rowsPerPage)).map((country: any, i: number) => (
-              <TableRow key={country.name + i}  >
+              <TableRow key={country.name.common + i}  >
                 <TableCell component="th" scope="row">{country.name.common}</TableCell>
                 <TableCell align="right">{country.region}</TableCell>
-                <TableCell align="right">{countryStore.toSqMiles(country.area)}mi&#178;</TableCell>
-                <TableCell align="right">{countryStore.toMillionsOrThousands(country.population)}</TableCell>
+                <TableCell align="right">{toSqMiles(country.area)}mi&#178;</TableCell>
+                <TableCell align="right">{toMillionsOrThousands(country.population)}</TableCell>
                 <TableCell align="right" ><Avatar alt={country.name.official} src={country.flags.png} /></TableCell>
               </TableRow>
             ))}

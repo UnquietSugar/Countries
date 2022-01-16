@@ -13,16 +13,28 @@ interface INavbarProps {
 
 const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore, sortIsDisabled }) => {
   const classes = useStyles();
+
   const [sortBy, setsortBy] = useState<string>('');
 
   const handleChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
     setsortBy(value as string);
-    if (Number(value) === sortOptions.unsorted) countryStore?.assignOriginalCountriesArray();
-    if (Number(value) === sortOptions.name) countryStore?.sortByName();
-    if (Number(value) === sortOptions.population) countryStore?.sortByPopulation();
-    if (Number(value) === sortOptions.area) countryStore?.sortByArea();
+
+    switch (Number(value)) {
+      case sortOptions.name:
+        countryStore?.sortByName();
+        break;
+      case sortOptions.population:
+        countryStore?.sortByPopulation();
+        break;
+      case sortOptions.area:
+        countryStore?.sortByArea();
+        break;
+      default:
+        countryStore?.assignOriginalCountriesArray();
+    }
   };
+
   return (
     <AppBar position="static" className={classes.navBar}>
       <Toolbar>
@@ -33,10 +45,8 @@ const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore
         <Link to='/lang-table' style={linkStyle} ><Button sx={{ color: 'white' }} aria-selected={true}>Languages Table</Button></Link>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth variant='filled' sx={{ bgcolor: 'white' }} disabled={sortIsDisabled}>
-            <InputLabel id="demo-simple-select-label">Sort by...</InputLabel>
+            <InputLabel>Sort by...</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               value={sortBy}
               label="Sort"
               onChange={handleChange}

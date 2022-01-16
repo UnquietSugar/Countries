@@ -1,9 +1,9 @@
 import { observable, action } from 'mobx';
 import CountryService from '../Services/CountryService';
-import MathOperations from '../Helpers/MathOperations'
 
 
-export default class CountryStore extends MathOperations {
+
+export default class CountryStore {
 
   private countryService: CountryService;
   @observable public countries: any = [];
@@ -13,7 +13,6 @@ export default class CountryStore extends MathOperations {
   @observable public currentCountriesByLang: any[] = [];
 
   constructor(_countryService: CountryService) {
-    super();
     this.countryService = _countryService;
     this.getAllCountries();
   }

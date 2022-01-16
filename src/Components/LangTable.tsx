@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, TablePagination } from '@mui/material';
 import styles from '../styles/styles';
+import { countAveragePopulation } from '../Helpers/mathOperations';
 
 
 interface ILangTableProps {
@@ -49,7 +50,7 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
                 <TableCell align="right" sx={{ wordBreak: 'break-word' }}>
                   {countryArr.data.map((country: any, i: number) => `${country.name.common}; `)}
                 </TableCell>
-                <TableCell align="right" component="th" scope="row">{countryStore?.countAveragePopulation(countryArr.data)}</TableCell>
+                <TableCell align="right" component="th" scope="row">{countAveragePopulation(countryArr.data)}</TableCell>
               </TableRow>
             ))}
           </TableBody>
