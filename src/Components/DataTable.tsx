@@ -32,8 +32,6 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
 
   useEffect(() => setSortIsDisabled(false));
 
-  console.log(countryStore?.countries);
-
   return (
     <>
       <TableContainer component={Paper} elevation={4} sx={styles.tableContainerSx} >
