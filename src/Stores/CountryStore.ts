@@ -49,7 +49,7 @@ export default class CountryStore {
   };
 
   public async extractLanguageKeysToArray() {
-    let arr: any[] = [];
+    let arr: string[][] = [];
 
     this.countries.forEach((c: ICountry) => {
       if (!!c.languages) {
@@ -57,9 +57,7 @@ export default class CountryStore {
       };
     });
 
-    arr = arr.flat();
-
-    this.langArray = [...new Set(arr)];
+    this.langArray = [...new Set(arr.flat())];
   };
 
   public async getCountriesByLanguage(page: number, itemsPerPage: number) {
@@ -67,7 +65,7 @@ export default class CountryStore {
 
     this.currentCountriesByLang = [];
 
-    this.currentLangArr.forEach(async (lang: string, i: number) => {
+    this.currentLangArr.forEach(async (lang: string) => {
       this.currentCountriesByLang.push(await this.countryService.getByLanguage(lang));
     });
   };
