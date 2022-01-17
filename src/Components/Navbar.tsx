@@ -46,11 +46,7 @@ const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth variant='filled' sx={{ bgcolor: 'white' }} disabled={sortIsDisabled}>
             <InputLabel>Sort by...</InputLabel>
-            <Select
-              value={sortBy}
-              label="Sort"
-              onChange={handleChange}
-            >
+            <Select value={sortBy} label="Sort" onChange={handleChange} >
               <MenuItem value={sortOptions.unsorted}>Unsorted</MenuItem>
               <MenuItem value={sortOptions.name}>Name</MenuItem>
               <MenuItem value={sortOptions.population}>Population</MenuItem>
