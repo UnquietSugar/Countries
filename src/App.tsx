@@ -9,7 +9,6 @@ import { inject, observer } from 'mobx-react';
 import { Box } from '@mui/system';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ICountry } from './Interfaces/ICountry';
-import { ICountriesByLanguage } from './Interfaces/ICountriesByLanguage';
 
 interface IAppProps {
   countryStore?: CountryStore;
