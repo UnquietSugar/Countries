@@ -45,6 +45,16 @@ export default class CountryStore {
     this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.area - b.area);
   };
 
+  @action public getCountriesByLanguage(page: number, itemsPerPage: number) {
+    this.currentLangArr = this.langArray.slice(page * itemsPerPage, (itemsPerPage * page) + itemsPerPage);
+
+    this.currentCountriesByLang = [];
+
+    this.currentLangArr.forEach(async (lang: string) => {
+      this.currentCountriesByLang.push(await this.countryService.getByLanguage(lang));
+    });
+  };
+
   public findCountryWithSmallestArea() {
     return this.countries.reduce((a: ICountry, b: ICountry) => a.area < b.area ? a : b);
   };
@@ -63,16 +73,6 @@ export default class CountryStore {
     });
 
     this.langArray = [...new Set(arr.flat())];
-  };
-
-  public getCountriesByLanguage(page: number, itemsPerPage: number) {
-    this.currentLangArr = this.langArray.slice(page * itemsPerPage, (itemsPerPage * page) + itemsPerPage);
-
-    this.currentCountriesByLang = [];
-
-    this.currentLangArr.forEach(async (lang: string) => {
-      this.currentCountriesByLang.push(await this.countryService.getByLanguage(lang));
-    });
   };
 
 };
