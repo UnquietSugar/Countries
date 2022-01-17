@@ -16,8 +16,13 @@ export default class CountryStore {
 
   constructor(_countryService: CountryService) {
     this.countryService = _countryService;
-    this.getAllCountries();
+    this.onInitialize();
   };
+
+  private async onInitialize() {
+    await this.getAllCountries();
+    this.extractLanguageKeysToArray();
+  }
 
   @action private async getAllCountries() {
     this.countries = await this.countryService.getAllCountries();
@@ -60,7 +65,7 @@ export default class CountryStore {
     this.langArray = [...new Set(arr.flat())];
   };
 
-  public async getCountriesByLanguage(page: number, itemsPerPage: number) {
+  public getCountriesByLanguage(page: number, itemsPerPage: number) {
     this.currentLangArr = this.langArray.slice(page * itemsPerPage, (itemsPerPage * page) + itemsPerPage);
 
     this.currentCountriesByLang = [];

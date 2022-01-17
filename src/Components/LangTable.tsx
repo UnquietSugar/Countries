@@ -25,7 +25,6 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
   };
 
   useEffect(() => {
-    countryStore?.extractLanguageKeysToArray();
     countryStore?.getCountriesByLanguage(page, rowsPerPage);
   }, [page, rowsPerPage, countryStore])
 
