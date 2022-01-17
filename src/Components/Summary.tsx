@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar } from '@mui/material';
 import { countAveragePopulation } from '../Helpers/mathOperations';
+import { ICountry } from '../Interfaces/ICountry';
 
 interface ISummaryProps {
   countryStore?: CountryStore;
@@ -11,6 +12,7 @@ interface ISummaryProps {
 const Summary: FC<ISummaryProps> = inject('countryStore')(observer(({ countryStore }) => {
   const smallestCountry = countryStore?.findCountryWithSmallestArea();
   const biggestCountry = countryStore?.findCountryWithBiggestArea();
+  const countries = countryStore?.countries as ICountry[]
 
   return (
     <TableContainer elevation={5} component={Paper} sx={{ display: 'flex', justifyContent: 'center', marginY: 5, paddingY: 10 }} >
@@ -23,7 +25,7 @@ const Summary: FC<ISummaryProps> = inject('countryStore')(observer(({ countrySto
         <TableBody>
           <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
             <TableCell component="th" scope="row"><Typography variant='h6'>Average population per country:</Typography></TableCell>
-            <TableCell align="right">{countAveragePopulation(countryStore?.countries)}</TableCell>
+            <TableCell align="right">{countAveragePopulation(countries)}</TableCell>
           </TableRow>
           <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
             <TableCell component="th" scope="row"><Typography variant='h6'>Smallest area:</Typography></TableCell>

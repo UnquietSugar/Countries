@@ -1,3 +1,4 @@
+import { ICountry } from '../Interfaces/ICountry';
 
 
 export const toMillionsOrThousands = (num: number) => {
@@ -14,13 +15,13 @@ export const toSqMiles = (num: number) => {
   return `${(num * 0.386102).toFixed().toString().replace('-', '')}`;
 }
 
-export const countAveragePopulation = (arr: any[]) => {
+export const countAveragePopulation = (arr: ICountry[]) => {
   let num = 0;
   arr.forEach((country) => num += country.population);
-  return `${(num / arr.length).toFixed(1)} ppl`;
+  return `${(num / arr?.length).toFixed(1)}`;
 }
 
-export const countLanguagepopulation = (arr: any[]) => {
+export const countLanguagepopulation = (arr: ICountry[]) => {
   let num = 0;
   arr.forEach((country) => num += country.population);
   return Math.round(num);

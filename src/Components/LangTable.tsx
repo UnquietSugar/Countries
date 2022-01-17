@@ -4,6 +4,8 @@ import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, TablePagination } from '@mui/material';
 import styles from '../styles/styles';
 import { countAveragePopulation } from '../Helpers/mathOperations';
+import { ICountriesByLanguage } from '../Interfaces/ICountriesByLanguage';
+import { ICountry } from '../Interfaces/ICountry';
 
 
 interface ILangTableProps {
@@ -44,11 +46,11 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
             </TableRow>
           </TableHead>
           <TableBody>
-            {countryStore?.currentCountriesByLang.map((countryArr: any, i: number) => (
+            {countryStore?.currentCountriesByLang.map((countryArr: ICountriesByLanguage, i: number) => (
               <TableRow key={countryArr.lang} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                 <TableCell component="th" scope="row">{countryArr.lang || "Not Found"}</TableCell>
                 <TableCell align="right" sx={{ wordBreak: 'break-word' }}>
-                  {countryArr.data.map((country: any, i: number) => `${country.name.common}; `)}
+                  {countryArr.data.map((country: ICountry, i: number) => `${country.name.common}; `)}
                 </TableCell>
                 <TableCell align="right" component="th" scope="row">{countAveragePopulation(countryArr.data)}</TableCell>
               </TableRow>

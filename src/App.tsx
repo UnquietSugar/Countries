@@ -8,6 +8,7 @@ import CountryStore from './Stores/CountryStore';
 import { inject, observer } from 'mobx-react';
 import { Box } from '@mui/system';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ICountry } from './Interfaces/ICountry';
 
 interface IAppProps {
   countryStore?: CountryStore;
@@ -16,10 +17,12 @@ interface IAppProps {
 const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) => {
   const [sortIsDisabled, setSortIsDisabled] = useState<boolean>(false);
 
+  const countries = countryStore?.countries as ICountry[]
+
   const countTable = () => {
     return (
       <Box padding={10}>
-        {countryStore?.countries.length > 0 ?
+        {countries.length > 0 ?
           <>
             <DataTable setSortIsDisabled={setSortIsDisabled} />
             <Summary />
@@ -32,7 +35,7 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
   const langTable = () => {
     return (
       <Box padding={10}>
-        {countryStore?.countries.length > 0 ?
+        {countries.length > 0 ?
           <LangTable setSortIsDisabled={setSortIsDisabled} />
           :
           <Loader />}

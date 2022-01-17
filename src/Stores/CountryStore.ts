@@ -1,4 +1,6 @@
 import { observable, action } from 'mobx';
+import { ICountriesByLanguage } from '../Interfaces/ICountriesByLanguage';
+import { ICountry } from '../Interfaces/ICountry';
 import CountryService from '../Services/CountryService';
 
 
@@ -6,11 +8,11 @@ import CountryService from '../Services/CountryService';
 export default class CountryStore {
 
   private countryService: CountryService;
-  @observable public countries: any = [];
-  @observable public currentCountries: any = [];
+  @observable public countries: ICountry[] = [];
+  @observable public currentCountries: ICountry[] = [];
   @observable public langArray: string[] = [];
   @observable public currentLangArr: string[] = [];
-  @observable public currentCountriesByLang: any[] = [];
+  @observable public currentCountriesByLang: ICountriesByLanguage[] = [];
 
   constructor(_countryService: CountryService) {
     this.countryService = _countryService;
@@ -27,29 +29,29 @@ export default class CountryStore {
   }
 
   @action public sortByName() {
-    this.currentCountries = this.countries.sort((a: any, b: any) => a.name.common.localeCompare(b.name.common));
+    this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.name.common.localeCompare(b.name.common));
   }
 
   @action public sortByPopulation() {
-    this.currentCountries = this.countries.sort((a: any, b: any) => a.population - b.population);
+    this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.population - b.population);
   }
 
   @action public sortByArea() {
-    this.currentCountries = this.countries.sort((a: any, b: any) => a.area - b.area);
+    this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.area - b.area);
   }
 
   public findCountryWithSmallestArea() {
-    return this.countries.reduce((a: any, b: any) => a.area < b.area ? a : b);
+    return this.countries.reduce((a: ICountry, b: ICountry) => a.area < b.area ? a : b);
   }
 
   public findCountryWithBiggestArea() {
-    return this.countries.reduce((a: any, b: any) => a.area > b.area ? a : b);
+    return this.countries.reduce((a: ICountry, b: ICountry) => a.area > b.area ? a : b);
   }
 
   public async extractLanguageKeysToArray() {
     let arr: any[] = [];
 
-    this.countries.forEach((c: any) => {
+    this.countries.forEach((c: ICountry) => {
       if (!!c.languages) {
         arr.push(Object.keys(c.languages))
       }

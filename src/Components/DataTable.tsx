@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import FlagCircleRoundedIcon from '@mui/icons-material/FlagCircleRounded';
 import styles from '../styles/styles';
 import { toMillionsOrThousands, toSqMiles } from '../Helpers/mathOperations';
+import { ICountry } from '../Interfaces/ICountry';
 
 interface IDataTableProps {
   countryStore?: CountryStore;
@@ -47,7 +48,7 @@ const DataTable: FC<IDataTableProps> = inject('countryStore')(observer(({ countr
             </TableRow>
           </TableHead>
           <TableBody>
-            {countryStore?.currentCountries.slice(page * rowsPerPage, (page * rowsPerPage + rowsPerPage)).map((country: any, i: number) => (
+            {countryStore?.currentCountries.slice(page * rowsPerPage, (page * rowsPerPage + rowsPerPage)).map((country: ICountry, i: number) => (
               <TableRow key={country.name.common + i}  >
                 <TableCell component="th" scope="row">{country.name.common}</TableCell>
                 <TableCell align="right">{country.region}</TableCell>
