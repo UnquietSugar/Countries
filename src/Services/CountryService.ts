@@ -9,7 +9,7 @@ export default class CountryService {
     const result = await res.json();
 
     return this.extractNeededKeys(result);
-  }
+  };
 
   public async getByLanguage(lang: string) {
     const res = await fetch(this.path + `lang/${lang}`);
@@ -18,7 +18,7 @@ export default class CountryService {
     const commonLang: string = data[0].languages[lang];
 
     return { data: data, lang: commonLang };
-  }
+  };
 
   private extractNeededKeys(result: any) {
     const countries: ICountry[] = [];
@@ -26,6 +26,7 @@ export default class CountryService {
       const reducedCountry = { area: country.area, flags: country.flags, languages: country.languages, name: country.name, population: country.population, region: country.region };
       countries.push(reducedCountry);
     });
+
     return countries;
-  }
-}
+  };
+};

@@ -4,6 +4,6 @@ const styles = {
   tablePaginationSx: { marginTop: '-50px' },
   paginationDiv: { display: 'flex', justifyContent: 'center', marginTop: '-50px' },
   loaderBoxSx: { display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' },
-}
+};
 
 export default styles;

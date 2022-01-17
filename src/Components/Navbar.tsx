@@ -32,7 +32,7 @@ const Navbar: FC<INavbarProps> = inject('countryStore')(observer(({ countryStore
         break;
       default:
         countryStore?.assignOriginalCountriesArray();
-    }
+    };
   };
 
   return (
@@ -76,9 +76,6 @@ const useStyles = makeStyles(() => ({
 const linkStyle = {
   textDecoration: "none",
   marginRight: 50
-}
-
-
-
+};
 
 export default Navbar;

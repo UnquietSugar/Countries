@@ -12,7 +12,7 @@ interface ISummaryProps {
 const Summary: FC<ISummaryProps> = inject('countryStore')(observer(({ countryStore }) => {
   const smallestCountry = countryStore?.findCountryWithSmallestArea();
   const biggestCountry = countryStore?.findCountryWithBiggestArea();
-  const countries = countryStore?.countries as ICountry[]
+  const countries = countryStore?.countries as ICountry[];
 
   return (
     <TableContainer elevation={5} component={Paper} sx={{ display: 'flex', justifyContent: 'center', marginY: 5, paddingY: 10 }} >

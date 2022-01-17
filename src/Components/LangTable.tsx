@@ -31,9 +31,6 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
 
   useEffect(() => setSortIsDisabled(true));
 
-
-
-
   return (
     <>
       <TableContainer component={Paper} elevation={4} sx={styles.tableContainerSx} >

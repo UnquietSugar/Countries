@@ -3,6 +3,6 @@ enum sortOptions {
   name,
   population,
   area
-}
+};
 
 export default sortOptions;

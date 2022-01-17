@@ -30,7 +30,7 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
           :
           <Loader />}
       </Box>);
-  }
+  };
 
   const langTable = () => {
     return (
@@ -41,7 +41,7 @@ const App: FC<IAppProps> = inject('countryStore')(observer(({ countryStore }) =>
           <Loader />}
       </Box>
     )
-  }
+  };
 
 
   return (

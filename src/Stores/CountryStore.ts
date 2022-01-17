@@ -17,36 +17,36 @@ export default class CountryStore {
   constructor(_countryService: CountryService) {
     this.countryService = _countryService;
     this.getAllCountries();
-  }
+  };
 
   @action private async getAllCountries() {
     this.countries = await this.countryService.getAllCountries();
     this.assignOriginalCountriesArray();
-  }
+  };
 
   @action public assignOriginalCountriesArray() {
     this.currentCountries = this.countries;
-  }
+  };
 
   @action public sortByName() {
     this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.name.common.localeCompare(b.name.common));
-  }
+  };
 
   @action public sortByPopulation() {
     this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.population - b.population);
-  }
+  };
 
   @action public sortByArea() {
     this.currentCountries = this.countries.sort((a: ICountry, b: ICountry) => a.area - b.area);
-  }
+  };
 
   public findCountryWithSmallestArea() {
     return this.countries.reduce((a: ICountry, b: ICountry) => a.area < b.area ? a : b);
-  }
+  };
 
   public findCountryWithBiggestArea() {
     return this.countries.reduce((a: ICountry, b: ICountry) => a.area > b.area ? a : b);
-  }
+  };
 
   public async extractLanguageKeysToArray() {
     let arr: any[] = [];
@@ -54,13 +54,13 @@ export default class CountryStore {
     this.countries.forEach((c: ICountry) => {
       if (!!c.languages) {
         arr.push(Object.keys(c.languages))
-      }
-    })
+      };
+    });
 
     arr = arr.flat();
 
     this.langArray = [...new Set(arr)];
-  }
+  };
 
   public async getCountriesByLanguage(page: number, itemsPerPage: number) {
     this.currentLangArr = this.langArray.slice(page * itemsPerPage, (itemsPerPage * page) + itemsPerPage);
@@ -69,7 +69,7 @@ export default class CountryStore {
 
     this.currentLangArr.forEach(async (lang: string, i: number) => {
       this.currentCountriesByLang.push(await this.countryService.getByLanguage(lang));
-    })
-  }
+    });
+  };
 
-}
+};
