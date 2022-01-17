@@ -22,7 +22,7 @@ export default class CountryStore {
   private async onInitialize() {
     await this.getAllCountries();
     this.extractLanguageKeysToArray();
-  }
+  };
 
   @action private async getAllCountries() {
     this.countries = await this.countryService.getAllCountries();
