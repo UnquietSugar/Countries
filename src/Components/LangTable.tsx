@@ -43,11 +43,11 @@ const LangTable: FC<ILangTableProps> = inject('countryStore')(observer(({ countr
             </TableRow>
           </TableHead>
           <TableBody>
-            {countryStore?.currentCountriesByLang.map((countryArr: ICountriesByLanguage, i: number) => (
+            {countryStore?.currentCountriesByLang.map((countryArr: ICountriesByLanguage) => (
               <TableRow key={countryArr.lang} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
                 <TableCell component="th" scope="row">{countryArr.lang || "Not Found"}</TableCell>
                 <TableCell align="right" sx={{ wordBreak: 'break-word' }}>
-                  {countryArr.data.map((country: ICountry, i: number) => `${country.name.common}; `)}
+                  {countryArr.data.map((country: ICountry) => `${country.name.common}; `)}
                 </TableCell>
                 <TableCell align="right" component="th" scope="row">{countAveragePopulation(countryArr.data)}</TableCell>
               </TableRow>
