@@ -4,7 +4,7 @@ import Loader from './Components/Loader';
 import Navbar from './Components/Navbar';
 import Summary from './Components/Summary';
 import LangTable from './Components/LangTable';
-import CountryStore from './Stores/CountryStore';
+import { CountryStore } from './Stores/CountryStore';
 import { inject, observer } from 'mobx-react';
 import { Box } from '@mui/system';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
