@@ -4,7 +4,7 @@ import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar, TablePagination } from '@mui/material';
 import FlagCircleRoundedIcon from '@mui/icons-material/FlagCircleRounded';
 import styles from '../styles/styles';
-import { toMillionsOrThousands, toSqMiles } from '../Helpers/mathOperations';
+import { toMillionsOrThousands, toSqMiles } from '../Helpers/MathOperations';
 import { ICountry } from '../Interfaces/ICountry';
 
 interface IDataTableProps {

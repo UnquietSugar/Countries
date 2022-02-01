@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { inject, observer } from 'mobx-react';
 import CountryStore from '../Stores/CountryStore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Avatar } from '@mui/material';
-import { countAveragePopulation } from '../Helpers/mathOperations';
+import { countAveragePopulation } from '../Helpers/MathOperations';
 import { ICountry } from '../Interfaces/ICountry';
 
 interface ISummaryProps {
